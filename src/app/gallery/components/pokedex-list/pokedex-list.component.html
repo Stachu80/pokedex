@@ -1,0 +1,19 @@
+<mat-toolbar color="black">
+  <div class="logo"></div>
+  <span>Pokedex</span>
+</mat-toolbar>
+<mat-grid-list cols="5" rowHeight="1:1">
+  <div class="wrapper">
+    <div *ngFor=" let item of pagedList; trackBy: trackByFn;" class="item">
+      <mat-grid-tile>
+        <app-pokedex-list-item [item]=item (click)="openDialog(item)" ></app-pokedex-list-item>
+      </mat-grid-tile>
+    </div>
+  </div>
+</mat-grid-list>
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)= "OnPageChange($event)">
+</mat-paginator>
+

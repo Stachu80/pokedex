@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20vw;
+  height: 65vh;
+}
+
+.image {
+  width: 20vw;
+  height: 45vh;
+  margin-bottom: 1vh;
+}
+
+ul.b {
+  list-style-type: none;
+}
+
+.mat-form-field-label {
+  color: white !important;
+}
