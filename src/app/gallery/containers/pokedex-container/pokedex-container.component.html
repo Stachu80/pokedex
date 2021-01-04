@@ -1,3 +1,7 @@
 <app-pokedex-list
-  [pokemonList]="getAllPokemons$ | async">
+  [pokemonList]="selectAllPokemons$ | async"
+  [totalCount]="selectTotalCount$ | async"
+  (selectedCard)="openDialog($event)"
+  (selectedPageAndPageSize)="loadCards($event)"
+>
 </app-pokedex-list>

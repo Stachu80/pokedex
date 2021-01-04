@@ -2,18 +2,20 @@
   <div class="logo"></div>
   <span>Pokedex</span>
 </mat-toolbar>
-<mat-grid-list cols="5" rowHeight="1:1">
-  <div class="wrapper">
-    <div *ngFor=" let item of pagedList; trackBy: trackByFn;" class="item">
-      <mat-grid-tile>
-        <app-pokedex-list-item [item]=item (click)="openDialog(item)" ></app-pokedex-list-item>
-      </mat-grid-tile>
-    </div>
+
+<div class='grid-container'>
+  <div *ngFor=" let item of pagedList; trackBy: trackByFn;">
+    <app-pokedex-list-item
+      (click)="openDialog(item)"
+      [item]=item
+      class="item">
+    </app-pokedex-list-item>
   </div>
-</mat-grid-list>
+</div>
+
 <mat-paginator [length]="length"
                [pageSize]="pageSize"
                [pageSizeOptions]="pageSizeOptions"
-               (page)= "OnPageChange($event)">
+               (page)="OnPageChange($event)">
 </mat-paginator>
 

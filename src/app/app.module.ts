@@ -25,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule,
     BrowserAnimationsModule,
   ],
+
   providers: [ {
     provide: APP_INITIALIZER,
     useFactory: appInit,
@@ -39,7 +40,8 @@ export class AppModule {
 export function appInit(store: Store): any {
   return () => {
     messenger().boot('[1. Bootstrap App]');
-    store.dispatch(PokedexActions.loadPokedexs());
+    store.dispatch(PokedexActions.startApp());
+    store.dispatch(PokedexActions.loadPokedexsCards({ page: 1, pageSize: 10 }));
   };
 }
 

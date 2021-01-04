@@ -1,14 +1,23 @@
+@import 'src/styles/constants';
 
 :host {
   display: flex;
   flex-direction: column;
-  text-align: center;
+  justify-content: center;
+  align-content: center;
+  min-height: getUnit(120);
 }
 
 img {
-  width: 22vh;
+  width: getUnit(100);
+  align-self: center;
+  cursor: pointer;
+  padding: 1%;
+  box-sizing: border-box;
 }
-.name{
-  margin-top: 1%;
+
+.spinner{
+  align-self: center;
+  width: 100%;
   color: white;
 }

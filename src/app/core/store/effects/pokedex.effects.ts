@@ -2,10 +2,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ApiService } from '../../service/api.service';
 import { PokedexActions } from '../actions';
 import { Injectable } from '@angular/core';
-import { catchError, exhaustMap, first, map, tap } from 'rxjs/operators';
+import { catchError, debounceTime, exhaustMap, first, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { messenger } from '../../../shared/helper/messenger';
-import { getAllPokemons } from '../selectors';
+import { selectAllPokemons } from '../selectors';
 import { AppState } from '../reducers';
 import { Store } from '@ngrx/store';
 
@@ -23,22 +23,40 @@ export class PokedexEffects {
 
   getAllPokemones$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(PokedexActions.loadPokedexs),
-      tap(() => messenger().effect('2. Effect caught loadPokeDex action')),
-      exhaustMap(() =>
-        this.apiService.loadAllPokemons().pipe(
+      ofType(PokedexActions.loadPokedexsCards),
+      debounceTime(1500),
+      exhaustMap((payload) =>
+        this.apiService.loadAllPokemons(payload.page, payload.pageSize).pipe(
           map((pokedex) => {
+          /*    const indexReduce = pokedex.reduce((acc, next) => ({ ...acc, [next['id']]: next }), {});
+              console.log(indexReduce)*/
+
               const indexPokedex = pokedex.map((el, index) => {
                 return { ...el, idx: index };
               });
               messenger().effect('4. Effect send action with data from api-service to reducer');
+              console.log(indexPokedex)
               return PokedexActions.loadPokedexsSuccess({ pokedex: indexPokedex });
             }
           ),
           catchError((error: Error) => of(PokedexActions.loadPokedexsFailure))
         )
       )
-    )
+    ),
+  );
+
+
+  getCardsTotalCount$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PokedexActions.startApp),
+      tap(() => messenger().effect('2. Effect caught loadPokeDex action')),
+      exhaustMap(() =>
+        this.apiService.getCardsTotalCount().pipe(
+          map((totalCount) => PokedexActions.getTotalCount({ totalCount: +totalCount })
+          ),
+        )
+      )
+    ),
   );
 
   /*updatePokemonesList$ = createEffect(() =>
@@ -46,7 +64,7 @@ export class PokedexEffects {
       ofType(PokedexActions.updatePokemonName),
       exhaustMap((payload) =>
         combineLatest([
-            this.getAllPokemons$(),
+            this.selectAllPokemons$(),
             of(payload)
           ]
         )),
@@ -61,7 +79,7 @@ export class PokedexEffects {
   );*/
 
   private getAllPokemons$ = () => this.store
-    .select(getAllPokemons).pipe(
+    .select(selectAllPokemons).pipe(
       first(val => val !== null)
     );
 }

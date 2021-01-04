@@ -1,10 +1,9 @@
 import { PokedexListComponent } from './pokedex-list/pokedex-list.component';
 import { PokedexListItemComponent } from './pokedex-list-item/pokedex-list-item.component';
-import { PokedexDialogComponent } from './pokedex-dialog/pokedex-dialog.component';
 
 export const components = [
   PokedexListComponent,
   PokedexListItemComponent,
-  PokedexDialogComponent
+ /* PokedexDialogComponent*/
 ];
 

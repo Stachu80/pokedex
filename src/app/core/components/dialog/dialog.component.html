@@ -1,0 +1,25 @@
+<div [ngStyle]="{'visibility':card === null ?  'hidden':'visible' }">
+  <div class="dialog">
+
+      <img class='image' loading='lazy' src="{{card?.imageUrl}}">
+
+    <mat-form-field>
+      <mat-label>Nazwa</mat-label>
+      <input matInput placeholder="Nazwa" value='{{card?.name}}' (change)="changeInput($event.target, card)">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Typ</mat-label>
+      <input matInput placeholder="Typ" value='{{card?.types}}' (change)="changeInput($event.target, card)">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>HP</mat-label>
+      <input matInput placeholder="Hp" value='{{card?.hp}}' (change)="changeInput($event.target, card)">
+    </mat-form-field>
+  </div>
+
+
+  <button (click)="close()" class="back-overlay"></button>
+</div>
+
+
