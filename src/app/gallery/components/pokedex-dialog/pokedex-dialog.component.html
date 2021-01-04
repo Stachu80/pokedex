@@ -1,12 +1,16 @@
-<img class='image' loading='lazy' src="{{data.imageUrlHiRes}}">
-
-<mat-form-field class="example-full-width">
+<div class='image'>
+  <img loading='lazy' src="{{data.imageUrl}}">
+</div>
+<mat-form-field>
   <mat-label>Nazwa</mat-label>
   <input matInput placeholder="Nazwa" value={{data.name}} (change)="changeInput($event.target, data)">
 </mat-form-field>
-
 <mat-list>
-  <mat-list-item><mat-icon>adb</mat-icon>  {{data.types}} </mat-list-item>
-  <mat-list-item><mat-icon>star</mat-icon> {{data.hp}} </mat-list-item>
+  <mat-list-item>
+    <mat-icon>adb</mat-icon>
+    {{data.types}} </mat-list-item>
+  <mat-list-item>
+    <mat-icon>star</mat-icon>
+    {{data.hp}} </mat-list-item>
 </mat-list>
 

@@ -2,14 +2,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 20vw;
-  height: 65vh;
+  align-content: center;
 }
 
 .image {
-  width: 20vw;
-  height: 45vh;
+  width: 100%;
   margin-bottom: 1vh;
+  align-self: center;
+  display: flex;
+  background-color: #f44336;
+}
+
+img{
+  margin: auto;
 }
 
 ul.b {

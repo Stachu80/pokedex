@@ -1,0 +1,5 @@
+$shell-aspect-ratio: 3 / 4;
+
+@function getUnit($size) {
+  @return calc(#{$size * 0.2} * min(#{1vw * $shell-aspect-ratio}, 1vh));
+}

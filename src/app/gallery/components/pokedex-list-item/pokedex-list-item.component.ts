@@ -8,5 +8,10 @@ import { Card } from '../../../core/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PokedexListItemComponent {
+  isLoaded = false;
+
   @Input() item: Card;
+
+  isLoadSuccess = () => this.isLoaded = true;
+
 }

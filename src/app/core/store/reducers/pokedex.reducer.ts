@@ -19,10 +19,10 @@ export const pokeDexReducer = createReducer(
     ...pokedex,
   })),
 
-  on(PokedexActions.updatePokemonName, (state, { item }) => ({
+/*  on(PokedexActions.updatePokemonName, (state, { item }) => ({
       ...state,
       [item.idx]: { ...state[item.idx], name: item.name }
     })
-  ),
+  ),*/
 );
 

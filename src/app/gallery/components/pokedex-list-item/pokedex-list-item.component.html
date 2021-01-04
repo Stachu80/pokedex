@@ -1,3 +1,5 @@
-<img loading="lazy" src='{{item?.imageUrl}}'>
-<div class="name" >{{item?.name}}</div>
+<img (load)="isLoadSuccess()" class="image" loading="lazy" src='{{item?.imageUrl}}'>
+<ng-container *ngIf="!isLoaded">
+  <mat-spinner  class="spinner"></mat-spinner>
+</ng-container>
 

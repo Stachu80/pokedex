@@ -1,1 +1,6 @@
+<app-dialog
+  [card]="selectedCard$|async"
+  (closeDialog)="closeDialog()"
+  class="dialog"
+></app-dialog>
 <ng-content></ng-content>

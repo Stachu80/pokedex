@@ -1,13 +1,28 @@
 import { createAction, props } from '@ngrx/store';
 import { Card } from '../../models';
 
-export const loadPokedexs = createAction(
-  '[Pokedex] Load Pokedexs'
+export const startApp = createAction(
+  '[Pokedex] Start App',
+);
+
+
+export const loadPokedexsCards = createAction(
+  '[Pokedex] Load Pokedexs',
+  props<{
+    page: number,
+    pageSize:number
+  }>()
 );
 
 export const loadPokedexsSuccess = createAction(
   '[Pokedex] Load Pokedex Success',
   props<{ pokedex: Card[] }>()
+);
+
+
+export const getTotalCount = createAction(
+  '[Pokedex]  Get Total Count',
+  props<{ totalCount: number }>()
 );
 
 export const loadPokedexsFailure = createAction(
